@@ -1,0 +1,130 @@
+$beige:  hsla(37, 52%, 81%, .5);
+$blue:   hsla(201, 55%, 12%, .55);
+$yellow: hsla(37, 90%, 62%, .8);
+$pink:   hsla(353, 97%, 61%, .55);
+
+$stops: 28px, 38px, 58px, 69px, 98px, 106px, 116px, 130px;
+
+$rot1: 45deg;
+$rot2: 135deg;
+
+  @function blue-stripes($rotation) {
+  @return repeating-linear-gradient($rotation, transparent, transparent nth($stops, 1), $blue nth($stops, 1), $blue nth($stops, 2), transparent nth($stops, 2), transparent nth($stops, 4), $blue nth($stops, 4), $blue nth($stops, 5), transparent nth($stops, 5), transparent nth($stops, 8));
+}
+
+@function pink-stripes($rotation) {
+  @return repeating-linear-gradient($rotation, transparent, transparent nth($stops, 3), $pink nth($stops, 3), $pink nth($stops, 4), transparent nth($stops, 4), transparent nth($stops, 6), $pink nth($stops, 6), $pink nth($stops, 7), transparent nth($stops, 7), transparent nth($stops, 8));
+}
+
+@function beige-stripes($rotation) {
+  @return repeating-linear-gradient($rotation, $beige, $beige nth($stops, 1), transparent nth($stops, 1), transparent nth($stops, 5), $beige nth($stops, 5), $beige nth($stops, 6), transparent nth($stops, 6), transparent nth($stops, 8));
+}
+
+@function yellow-stripes($rotation) {
+  @return repeating-linear-gradient($rotation, transparent, transparent nth($stops, 2), $yellow nth($stops, 2), $yellow nth($stops, 3), transparent nth($stops, 3), transparent nth($stops, 7), $yellow nth($stops, 7), $yellow nth($stops, 8));
+}
+
+@import "normalize";
+* {
+    box-sizing: border-box;
+}
+body {
+    background: #9b9b9b;
+}
+.container {
+    width: 100%;
+    max-width: 1633px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+.section {
+    padding-top: 140px;
+    padding-bottom: 140px;
+}
+.ul {
+    text-align: center;
+}
+li {
+    list-style: none;
+    display: inline-block;
+    margin: 5px;
+}
+.front {
+    height: 544px;
+    width: 310px;
+    background: #FFF;
+    display: inline-block;
+    position: relative;
+    position: absolute;
+    border-radius: 30px;
+    &::before {
+        content: "A";
+        position: absolute;
+        left: 90px;
+        bottom: 140px;
+        font-size: 14em;
+        font-family: serif;
+    }
+}
+.Symbols {
+    font-size: 50px;
+    color: #ff0000;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+.red {
+    font-size: 50px;
+    color: #ff0000;
+    display: block;
+    text-align: left;
+    padding: 14px;
+}
+.Suits {
+    font-size: 50px;
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+.tartan {
+  height: 544px;
+  width: 310px;
+  margin: auto;
+  background-color: opacify($beige, 1);
+  background-image:
+    blue-stripes($rot1), blue-stripes($rot2),
+    pink-stripes($rot1), pink-stripes($rot2),
+    beige-stripes($rot1), beige-stripes($rot2),  
+    yellow-stripes($rot1), yellow-stripes($rot2)
+    ;
+}
+.black {
+    font-size: 50px;
+    display: block;
+    text-align: left;
+    padding: 14px;
+}
+.back {
+    height: 544px;
+    width: 310px;
+    display: inline-block;
+     border-radius: 30px;
+    transform: rotateY(90deg);
+}
+.ul li:hover .front {
+    animation: rotate 0.3s ease-in forwards;
+}
+.ul li:hover .back {
+    animation: rotate 0.3s 0.3s ease-in forwards reverse;
+}
+// anmation
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(90deg);
+    }
+}
